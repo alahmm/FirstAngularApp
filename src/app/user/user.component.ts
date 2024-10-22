@@ -7,15 +7,17 @@ import {Component, computed, EventEmitter, Input, input, Output, output} from '@
   styleUrl: './user.component.css'
 })
 export class UserComponent {
-  @Input({required: true}) id!: string;
-  @Input({required: true}) avatar!: string;  //mark this property as settable from outside, ! for seeing to typescript that this field gonna be initialized from outside
-  @Input({required: true}) name!: string;
+  @Input({required: true}) user!: {
+    id: string,
+    avatar: string,
+    name: string
+  };//creating a type for user
   @Output() select = new EventEmitter();//you can explicitly specify the type through <string>
   get imagePath() {
-    return 'assets/users/' + this.avatar;
+    return 'assets/users/' + this.user.avatar;
   }
   onSelectUser() {
-    this.select.emit(this.id);
+    this.select.emit(this.user.id);
   }
 
 }
