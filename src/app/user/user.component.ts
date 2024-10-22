@@ -1,8 +1,5 @@
-import {Component, computed, signal} from '@angular/core';
+import {Component, Input} from '@angular/core';
 
-import {DUMMY_USERS} from '../dummy-users';
-
-let randomIndex = Math.floor(Math.random() * DUMMY_USERS.length)
 @Component({
   selector: 'app-user',
   standalone: true,
@@ -10,16 +7,12 @@ let randomIndex = Math.floor(Math.random() * DUMMY_USERS.length)
   styleUrl: './user.component.css'
 })
 export class UserComponent {
-  selectedUser = signal(DUMMY_USERS[randomIndex]); //initialize
+  @Input() avatar!: string;  //mark this property as settable from outside, ! for seeing to typescript that this field gonna be initialized from outside
+  @Input() name!: string;
 
-  imagePath = computed(() => 'assets/users/' + this.selectedUser().avatar)// ()=> is an arrow function
-  // get imagePath() {
-  //   return 'assets/users/' + this.selectedUser().avatar;
-  // }
-
-  onSelectUser() {
-    randomIndex = Math.floor(Math.random() * DUMMY_USERS.length)
-    this.selectedUser.set(DUMMY_USERS[randomIndex])  //update
+  get imagePath() {
+    return 'assets/users/' + this.avatar;
   }
+  onSelectUser() {}
 
 }
