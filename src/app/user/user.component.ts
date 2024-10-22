@@ -1,4 +1,4 @@
-import {Component, computed, EventEmitter, Input, input, Output} from '@angular/core';//Input is a decorator and input is a special function for signals
+import {Component, computed, EventEmitter, Input, input, Output, output} from '@angular/core';//Input is a decorator and input is a special function for signals
 
 @Component({
   selector: 'app-user',
@@ -10,7 +10,8 @@ export class UserComponent {
   @Input({required: true}) id!: string;
   @Input({required: true}) avatar!: string;  //mark this property as settable from outside, ! for seeing to typescript that this field gonna be initialized from outside
   @Input({required: true}) name!: string;
-  @Output() select = new EventEmitter();
+  // @Output() select = new EventEmitter();
+  select = output<string>();
   get imagePath() {
     return 'assets/users/' + this.avatar;
   }
