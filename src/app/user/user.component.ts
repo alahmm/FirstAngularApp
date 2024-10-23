@@ -1,16 +1,6 @@
-import {Component, computed, EventEmitter, Input, input, Output, output} from '@angular/core';//Input is a decorator and input is a special function for signals
+import {Component, computed, EventEmitter, Input, input, Output, output} from '@angular/core';
+import {User} from './user.model';
 
-// type User = {
-//   id: string,
-//   avatar: string,
-//   name: string
-// };
-
-interface User {
-    id: string,
-  avatar: string,
-  name: string
-}
 @Component({
   selector: 'app-user',
   standalone: true,
