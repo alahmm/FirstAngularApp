@@ -2,7 +2,7 @@
   <header>
     <h2>{{name}}' Tasks</h2><!--to show the name-->
     <menu>
-      <button>Add Task</button>
+      <button (click)="onAddTask()">Add Task</button>
     </menu>
   </header>
 
@@ -10,7 +10,7 @@
 
    @for (task of selectedUserTask; track task.id) {
     <li>
-    <app-task [task]="task"/>
+    <app-task [task]="task" (complete)="onCompleteTask($event)"/><!--listen to the event complete here and define a method in parent class for that-->
     </li>
     }
   </ul>

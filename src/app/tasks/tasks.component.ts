@@ -42,4 +42,19 @@ export class TasksComponent {
   get selectedUserTask() {
     return this.tasks.filter(task => task.userId == this.userId);
   }
+
+  onCompleteTask(id: string) {
+    this.tasks = this.tasks.filter(task => task.id !== id);
+  }
+
+  onAddTask() {
+
+    this.tasks = this.tasks.concat({
+      summary: 'lala',
+      dueDate: 'date',
+      id: 'u5',
+      title: 'i am a title',
+      userId: this.userId
+    })
+  }
 }
