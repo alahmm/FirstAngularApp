@@ -9,6 +9,7 @@ import {User} from './user.model';
 })
 export class UserComponent {
   @Input({required: true}) user!: User;//creating a type for user
+  @Input({required: true}) selected!: boolean;
   @Output() select = new EventEmitter();//you can explicitly specify the type through <string>
   get imagePath() {
     return 'assets/users/' + this.user.avatar;
