@@ -1,11 +1,13 @@
 import {Component, Input} from '@angular/core';
 import {TaskComponent} from './task/task.component';
+import {NewTaskComponent} from './new-task/new-task.component';
 
 @Component({
   selector: 'app-tasks',
   standalone: true,
   imports: [
-    TaskComponent
+    TaskComponent,
+    NewTaskComponent
   ],
   templateUrl: './tasks.component.html',
   styleUrl: './tasks.component.css'
@@ -13,6 +15,7 @@ import {TaskComponent} from './task/task.component';
 export class TasksComponent {
   @Input({required: true}) userId!: string;
   @Input({required: true}) name!: string;//? to say that might not be set or we can use | undefined
+  isAddingTask = false;
   tasks = [
     {
       id: 't1',
@@ -47,14 +50,12 @@ export class TasksComponent {
     this.tasks = this.tasks.filter(task => task.id !== id);
   }
 
-  onAddTask() {
+  onStartAddTask() {
+    this.isAddingTask = true;
 
-    this.tasks = this.tasks.concat({
-      summary: 'lala',
-      dueDate: 'date',
-      id: 'u5',
-      title: 'i am a title',
-      userId: this.userId
-    })
+  }
+
+  onCancelTask() {
+    this.isAddingTask = false;
   }
 }
