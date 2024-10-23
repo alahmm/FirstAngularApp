@@ -2,6 +2,7 @@ import {Component, Input} from '@angular/core';
 import {TaskComponent} from './task/task.component';
 import {NewTaskComponent} from './new-task/new-task.component';
 
+interface enteredTask{title: string, summary: string, dueDate: string}
 @Component({
   selector: 'app-tasks',
   standalone: true,
@@ -56,6 +57,20 @@ export class TasksComponent {
   }
 
   onCancelTask() {
+    this.isAddingTask = false;
+  }
+  nextId = this.tasks.length + 1;
+
+  onSubmitTask(enteredTask: enteredTask) {
+    this.tasks.push(//or use unshift method to add the task at the beginning of the array
+      {
+        id: 'u' + this.nextId,
+        userId: this.userId,
+        title: enteredTask.title,
+        summary: enteredTask.summary,
+        dueDate: enteredTask.dueDate
+      }
+    )
     this.isAddingTask = false;
   }
 }
