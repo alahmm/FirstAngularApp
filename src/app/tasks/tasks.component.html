@@ -14,7 +14,7 @@
 
    @for (task of selectedUserTask; track task.id) {
     <li>
-    <app-task [task]="task" (complete)="onCompleteTask($event)"/><!--listen to the event complete here and define a method in parent class for that-->
+    <app-task [task]="task"/><!--listen to the event complete here and define a method in parent class for that-->
     </li>
     }
   </ul>
